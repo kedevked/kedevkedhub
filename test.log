@@ -1,0 +1,14 @@
+
+> nx run krypto-space:serve:development
+
+
+ 
+
+ >  NX   Running target serve for project krypto-space failed
+
+   Failed tasks:
+   
+   - krypto-space:serve:development
+   
+   Hint: run the command with --verbose for more details.
+

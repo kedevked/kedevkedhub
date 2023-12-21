@@ -8,19 +8,26 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/krypto-space",
         "index": "apps/krypto-space/src/index.html",
         "browser": "apps/krypto-space/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/krypto-space/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/krypto-space/src/favicon.ico",
           "apps/krypto-space/src/assets"
         ],
-        "styles": ["apps/krypto-space/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/deeppurple-amber.css",
+          "apps/krypto-space/src/styles.scss"
+        ],
         "scripts": [],
         "server": "apps/krypto-space/src/main.server.ts",
         "prerender": true,
@@ -47,7 +54,13 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/krypto-space/src/environments/environment.ts",
+              "with": "apps/krypto-space/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -72,11 +85,15 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/krypto-space/jest.config.ts"
       }

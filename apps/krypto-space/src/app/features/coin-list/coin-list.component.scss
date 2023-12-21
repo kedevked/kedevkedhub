@@ -1,0 +1,29 @@
+.row-coin {
+    margin-bottom: 16px;
+
+    .coin-item {
+        flex: 1;
+    }
+}
+
+.coin-actions {
+    flex: 0;
+    display: inline-flex;
+    gap: 8px;
+    height: 40px;
+    margin-top: 8px;
+}
+
+.coin-delete {
+    margin-right: 16px;
+}
+
+.card-coin-list {
+    width: 80%;
+    margin: auto;
+    margin-top: 32px;
+}
+
+.coin-add-button {
+    margin-left: 16px;
+}
