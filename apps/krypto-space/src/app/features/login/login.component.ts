@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Auth, GoogleAuthProvider, getAuth, signInWithPopup } from '@angular/fire/auth';
+import {
+  Auth,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,10 +16,9 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  auth = getAuth();
-  provider = new GoogleAuthProvider();
+  auth = inject(Auth)
   signIn() {
-    signInWithPopup(this.auth, this.provider).then((credential) => {
+    signInWithPopup(this.auth, new GoogleAuthProvider()).then((credential) => {
       console.log('you are logged in', credential);
     });
   }
