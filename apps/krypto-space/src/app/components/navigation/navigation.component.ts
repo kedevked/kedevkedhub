@@ -8,7 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Auth, signOut } from '@angular/fire/auth';
 
 @Component({
   selector: 'kedevkedhub-navigation',
@@ -26,6 +27,12 @@ import { RouterOutlet } from '@angular/router';
   ],
 })
 export class NavigationComponent {
+  auth = inject(Auth);
+  router = inject(Router)
+  async logout() {
+    await signOut(this.auth);
+    this.router.navigate(['/login'])
+  }
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver
