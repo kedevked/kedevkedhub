@@ -27,12 +27,12 @@
       @for (coin of coins(); track $index) {
       <mat-list-item class="row-coin">
         <div class="coin-actions">
-          {{ coin.name }}
+          {{ coin.id }}
           <button
             type="button"
             mat-raised-button
             class="coin-delete"
-            (click)="deleteCoin($index)"
+            (click)="deleteCoin(coin.id)"
           >
             Delete
           </button>

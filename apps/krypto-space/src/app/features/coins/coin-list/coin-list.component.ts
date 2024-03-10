@@ -14,7 +14,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { skip, take } from 'rxjs';
-import { UserQueries } from '../../queries/users.queries';
+import { UserQueries } from '../../../queries/users.queries';
+import { Store } from '@ngrx/store';
+import { CoinActions } from '../+store/coin.actions';
+import { selectAll } from '../+store/coin.reducer';
 
 export interface Coin {
   name: string;
@@ -37,35 +40,23 @@ export interface Coin {
   styleUrl: './coin-list.component.scss',
 })
 export class CoinListComponent implements OnInit {
-  coins = signal<Coin[]>([]);
-  coins$ = toObservable(this.coins);
+  // coins$ = toObservable(this.coins);
   form = new FormGroup({
     coin: new FormControl('', { nonNullable: true }),
   });
   userQueries = inject(UserQueries);
   auth = inject(Auth);
+  store = inject(Store);
+  coins = this.store.selectSignal(selectAll);
 
-  deleteCoin(indexToRemove: number) {
-    this.coins.update((coins) => {
-      return coins.filter((_, i) => i !== indexToRemove);
-    });
+  deleteCoin(id: string) {
+    this.store.dispatch(CoinActions.deleteCoin({id}))
   }
   addCoin(name: string) {
-    this.coins.update((coins) => [...coins, { name }]);
-    this.form.controls.coin.reset();
+    this.store.dispatch(CoinActions.addCoin({ coin: { id: name } }));
   }
 
   ngOnInit(): void {
-    this.userQueries
-      .getUser(this.auth.currentUser?.uid as string)
-      .pipe(take(1))
-      .subscribe((user) => this.coins.set(user.coins ?? []));
-
-    this.coins$.pipe(skip(1)).subscribe((coins) =>
-      this.userQueries.upsertCoins(
-        this.auth.currentUser?.uid as string,
-        this.coins()
-      )
-    );
+    this.store.dispatch(CoinActions.loadCoins());
   }
 }

@@ -1,10 +1,14 @@
 import { Route } from '@angular/router';
-import { CoinListComponent } from './features/coin-list/coin-list.component';
+import { CoinListComponent } from './features/coins/coin-list/coin-list.component';
 import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LoginComponent } from './features/login/login.component';
-import { importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { coinsFeature } from './features/coins/+store/coin.reducer';
+import { CoinEffects } from './features/coins/+store/coin.effects';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 export const appRoutes: Route[] = [
   {
@@ -20,8 +24,9 @@ export const appRoutes: Route[] = [
     },
     children: [
       {
-        component: CoinListComponent,
         path: '',
+        providers: [provideState(coinsFeature), provideEffects([CoinEffects])],
+        children: [{ path: '', component: CoinListComponent }],
       },
     ],
   },

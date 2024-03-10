@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Coin } from '../features/coin-list/coin-list.component';
+import { Coin } from '../features/coins/+store/coin.model';
+
 
 interface User {
   coins?: Coin[];
 }
+
 
 @Injectable({ providedIn: 'root' })
 export class UserQueries {
