@@ -9,6 +9,7 @@ import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { coinsFeature } from './features/coins/+store/coin.reducer';
 import { CoinEffects } from './features/coins/+store/coin.effects';
+import { CoinResources } from './features/coins/+store/coin.resources';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 export const appRoutes: Route[] = [
   {
@@ -25,7 +26,11 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: '',
-        providers: [provideState(coinsFeature), provideEffects([CoinEffects])],
+        providers: [
+          provideState(coinsFeature),
+          provideEffects([CoinEffects]),
+          CoinResources,
+        ],
         children: [{ path: '', component: CoinListComponent }],
       },
     ],

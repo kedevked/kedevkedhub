@@ -19,9 +19,6 @@ import { Store } from '@ngrx/store';
 import { CoinActions } from '../+store/coin.actions';
 import { selectAll } from '../+store/coin.reducer';
 
-export interface Coin {
-  name: string;
-}
 
 @Component({
   selector: 'kedevkedhub-coin-list',
@@ -53,7 +50,7 @@ export class CoinListComponent implements OnInit {
     this.store.dispatch(CoinActions.deleteCoin({id}))
   }
   addCoin(name: string) {
-    this.store.dispatch(CoinActions.addCoin({ coin: { id: name } }));
+    this.store.dispatch(CoinActions.addCoin({ coin: { id: name, creationDate: new Date() } }));
   }
 
   ngOnInit(): void {

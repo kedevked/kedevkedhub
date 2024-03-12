@@ -1,15 +1,15 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Coin } from './coin.model';
 import { CoinActions } from './coin.actions';
+import { CoinEntity } from '../../../models/user';
 
 export const coinsFeatureKey = 'coins';
 
-export interface State extends EntityState<Coin> {
+export interface State extends EntityState<CoinEntity> {
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<Coin> = createEntityAdapter<Coin>();
+export const adapter: EntityAdapter<CoinEntity> = createEntityAdapter<CoinEntity>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties

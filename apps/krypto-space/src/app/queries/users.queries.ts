@@ -1,12 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Coin } from '../features/coins/+store/coin.model';
-
-
-interface User {
-  coins?: Coin[];
-}
+import { Coin, User } from '../models/user';
 
 
 @Injectable({ providedIn: 'root' })
