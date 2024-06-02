@@ -10,14 +10,13 @@ import { UserQueries } from '../../../queries/users.queries';
 import { catchSwitchMapError } from '../../../shared/rxjs-operators';
 import { CoinActions } from './coin.actions';
 import { selectAll } from './coin.reducer';
-import { CoinResources } from './coin.resources';
+import { CoinResources, CoinResourcesAbstract } from './coin.resources';
 
 @Injectable()
 export class CoinEffects {
   userQueries = inject(UserQueries);
-  auth = inject(Auth);
   store = inject(Store);
-  coinResources = inject(CoinResources);
+  coinResources = inject(CoinResourcesAbstract);
   loadCoins$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CoinActions.loadCoins),

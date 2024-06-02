@@ -9,7 +9,13 @@ import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { coinsFeature } from './features/coins/+store/coin.reducer';
 import { CoinEffects } from './features/coins/+store/coin.effects';
-import { CoinResources } from './features/coins/+store/coin.resources';
+import {
+  CoinResources,
+  CoinResourcesAbstract,
+} from './features/coins/+store/coin.resources';
+import { environment } from '../environments/environment';
+import { CoinResourcesMock } from './features/coins/+store/coin.resources.mock';
+import { of } from 'rxjs';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 export const appRoutes: Route[] = [
   {
@@ -19,7 +25,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: NavigationComponent,
-    canActivate: [AuthGuard],
+    canActivate: [environment.mock ? () => of(true) : AuthGuard],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,
     },
@@ -29,7 +35,10 @@ export const appRoutes: Route[] = [
         providers: [
           provideState(coinsFeature),
           provideEffects([CoinEffects]),
-          CoinResources,
+          {
+            provide: CoinResourcesAbstract,
+            useClass: environment.mock ? CoinResourcesMock : CoinResources,
+          },
         ],
         children: [{ path: '', component: CoinListComponent }],
       },

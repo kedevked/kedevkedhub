@@ -1,9 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { from, map, take } from 'rxjs';
+import { Observable, from, map, take } from 'rxjs';
 import { CoinEntity } from '../../../models/user';
 import { toCoins, toUserEntity } from '../../../parsers/users.parser';
 import { UserQueries } from '../../../queries/users.queries';
+
+@Injectable()
+export abstract class CoinResourcesAbstract {
+  abstract getCoins(): Observable<CoinEntity[]>;
+  abstract setCoins(coins: CoinEntity[]): Observable<void>;
+}
 
 @Injectable()
 export class CoinResources {

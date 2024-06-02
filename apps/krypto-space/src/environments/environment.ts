@@ -8,4 +8,5 @@ export const environment = {
     appId: 'xxxxx',
     measurementId: 'xxxxx',
   },
+  mock: false
 };

@@ -1,3 +1,4 @@
+
 export const environment = {
   firebase: {
     apiKey: "AIzaSyAuHkQwXVUn8CTtyh-WO1HeXEy0b-42qJI",
@@ -8,4 +9,5 @@ export const environment = {
     appId: "1:999136958965:web:509cff74401f0d3b1ce8bc",
     measurementId: "G-G12090XHLC"
   },
+  mock: true
 };
