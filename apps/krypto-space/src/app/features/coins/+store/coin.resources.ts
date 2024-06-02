@@ -1,14 +1,16 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { Observable, from, map, take } from 'rxjs';
-import { CoinEntity } from '../../../models/user';
+import { CoinEntity } from "../../../entities/user-entity";
 import { toCoins, toUserEntity } from '../../../parsers/users.parser';
 import { UserQueries } from '../../../queries/users.queries';
+import { validUser } from '@kedevkedhub/firestore/validators-library';
 
 @Injectable()
 export abstract class CoinResourcesAbstract {
   abstract getCoins(): Observable<CoinEntity[]>;
   abstract setCoins(coins: CoinEntity[]): Observable<void>;
+  abstract login(): Observable<void>;
 }
 
 @Injectable()
@@ -19,7 +21,10 @@ export class CoinResources {
   getCoins() {
     return this.userQueries.getUser(this.auth.currentUser?.uid as string).pipe(
       take(1),
-      map((user) => toUserEntity(user).coins)
+      map((user) => {
+        validUser(user);
+        return toUserEntity(user).coins;
+      })
     );
   }
 
@@ -30,5 +35,9 @@ export class CoinResources {
         toCoins(coins)
       )
     );
+  }
+
+  login() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider())
   }
 }

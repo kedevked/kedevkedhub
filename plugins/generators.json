@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "models-schemas": {
+      "factory": "./src/generators/models-schemas/generator",
+      "schema": "./src/generators/models-schemas/schema.json",
+      "description": "models-schemas generator"
+    },
+    "models-validators": {
+      "factory": "./src/generators/models-validators/generator",
+      "schema": "./src/generators/models-validators/schema.json",
+      "description": "models-validators generator"
+    },
+    "validators-library": {
+      "factory": "./src/generators/validators-library/generator",
+      "schema": "./src/generators/validators-library/schema.json",
+      "description": "validators-library generator"
+    }
+  }
+}

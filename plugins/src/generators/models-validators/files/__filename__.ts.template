@@ -1,0 +1,10 @@
+
+import { <%= model %> } from '@kedevkedhub/firestore/models';
+import { CustomError } from '@kedevkedhub/utils/errors';
+import { <%= standaloneValidator %> } from './ajv-validators/<%= standaloneValidatorFile %>';
+
+export function valid<%= model %> (data: <%= model %>) {
+  if (!<%= standaloneValidator %>(data)) {
+    throw new CustomError('<%= model %> is invalid');
+  }
+}

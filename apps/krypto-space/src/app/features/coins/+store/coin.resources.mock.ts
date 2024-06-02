@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { CoinEntity, UserEntity } from '../../../models/user';
+import { CoinEntity, UserEntity } from "../../../entities/user-entity";
 
 @Injectable()
 export class CoinResourcesMock {

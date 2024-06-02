@@ -1,0 +1,30 @@
+{
+  "name": "firestore-models",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "firestore/models/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/firestore/models",
+        "main": "firestore/models/src/index.ts",
+        "tsConfig": "firestore/models/tsconfig.lib.json",
+        "assets": ["firestore/models/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "firestore/models/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

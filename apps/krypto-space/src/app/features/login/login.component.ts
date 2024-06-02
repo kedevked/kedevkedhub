@@ -1,13 +1,10 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  Auth,
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-} from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { CoinActions } from '../coins/+store/coin.actions';
 
 @Component({
   selector: 'kedevkedhub-login',
@@ -18,11 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LoginComponent {
   auth = inject(Auth);
-  router = inject(Router)
+  router = inject(Router);
+  store = inject(Store);
   async signIn() {
-    await signInWithPopup(this.auth, new GoogleAuthProvider()).then((credential) => {
-      console.log('you are logged in', credential);
-    });
-    this.router.navigate(['/'])
+    this.store.dispatch(CoinActions.login());
   }
 }

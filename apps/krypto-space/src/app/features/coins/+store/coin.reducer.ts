@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { CoinActions } from './coin.actions';
-import { CoinEntity } from '../../../models/user';
+import { CoinEntity } from "../../../entities/user-entity";
 
 export const coinsFeatureKey = 'coins';
 

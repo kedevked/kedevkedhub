@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ModelsSchemas",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "collection": {
+      "type": "string",
+      "description": "directory where to find the models",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "collection directory"
+    },
+    "output": {
+      "type": "string",
+      "description": "directory where to create the schemas",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "output"
+    }
+  },
+  "required": []
+}

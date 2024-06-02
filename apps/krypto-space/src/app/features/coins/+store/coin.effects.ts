@@ -4,18 +4,20 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Auth } from '@angular/fire/auth';
 import { concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Router } from 'express';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { UserQueries } from '../../../queries/users.queries';
 import { catchSwitchMapError } from '../../../shared/rxjs-operators';
 import { CoinActions } from './coin.actions';
 import { selectAll } from './coin.reducer';
-import { CoinResources, CoinResourcesAbstract } from './coin.resources';
+import { CoinResourcesAbstract } from './coin.resources';
 
 @Injectable()
 export class CoinEffects {
   userQueries = inject(UserQueries);
   store = inject(Store);
+  auth = inject(Auth);
+  router = inject(Router);
   coinResources = inject(CoinResourcesAbstract);
   loadCoins$ = createEffect(() => {
     return this.actions$.pipe(
@@ -35,7 +37,7 @@ export class CoinEffects {
     return this.actions$.pipe(
       ofType(CoinActions.addCoin),
       concatLatestFrom(() => this.store.select(selectAll)),
-      switchMap(([ ,coins]) => {
+      switchMap(([, coins]) => {
         return this.coinResources
           .setCoins([...coins])
           .pipe(map(() => CoinActions.addCoinSuccess()));
@@ -60,6 +62,31 @@ export class CoinEffects {
       )
     );
   });
+
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CoinActions.login),
+      switchMap(() => {
+        return this.coinResources.login();
+      }),
+      map(() => CoinActions.loginSuccess()),
+      catchSwitchMapError((error: Error) =>
+        CoinActions.loginFailure({ error: error.message })
+      )
+    );
+  });
+
+  loginSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CoinActions.loginSuccess),
+        tap(() => {
+          this.router.navigate(['/']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   constructor(private actions$: Actions) {}
 }

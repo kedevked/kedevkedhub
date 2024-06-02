@@ -1,0 +1,30 @@
+{
+  "name": "utils-errors",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "utils/errors/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/utils/errors",
+        "main": "utils/errors/src/index.ts",
+        "tsConfig": "utils/errors/tsconfig.lib.json",
+        "assets": ["utils/errors/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "utils/errors/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

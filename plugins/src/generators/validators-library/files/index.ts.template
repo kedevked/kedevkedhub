@@ -1,0 +1,3 @@
+<% for (const file of files ) {
+%> export * from './lib/<%= file %>'; <%
+} %>

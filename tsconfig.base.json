@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kedevkedhub/firestore/models": ["firestore/models/src/index.ts"],
+      "@kedevkedhub/firestore/schemas": ["firestore/schemas/src/index.ts"],
+      "@kedevkedhub/firestore/validators-library": [
+        "firestore/validators-library/src/index.ts"
+      ],
+      "@kedevkedhub/plugins": ["plugins/src/index.ts"],
+      "@kedevkedhub/utils/errors": ["utils/errors/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

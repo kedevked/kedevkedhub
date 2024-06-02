@@ -1,6 +1,6 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { CoinEntity } from '../../../models/user';
+import { CoinEntity } from "../../../entities/user-entity";
 
 export const CoinActions = createActionGroup({
   source: 'Coin/API',
@@ -21,5 +21,10 @@ export const CoinActions = createActionGroup({
     'Delete Coin failure': props<{ error: string }>(),
     'Delete Coins': props<{ ids: string[] }>(),
     'Clear Coins': emptyProps(),
+
+    'login': emptyProps(),
+    'login success': emptyProps(),
+    'login failure': props<{error: string}>(),
+    
   }
 });

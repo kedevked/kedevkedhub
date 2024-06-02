@@ -42,3 +42,4 @@ Thumbs.db
 .angular
 
 environment.local.ts
+environment.development.ts
