@@ -19,28 +19,33 @@ import { of } from 'rxjs';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 export const appRoutes: Route[] = [
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
     path: '',
-    component: NavigationComponent,
-    canActivate: [environment.mock ? () => of(true) : AuthGuard],
-    data: {
-      authGuardPipe: redirectUnauthorizedToLogin,
-    },
+    providers: [
+      provideState(coinsFeature),
+      provideEffects([CoinEffects]),
+      {
+        provide: CoinResourcesAbstract,
+        useClass: environment.mock ? CoinResourcesMock : CoinResources,
+      },
+    ],
     children: [
       {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
         path: '',
-        providers: [
-          provideState(coinsFeature),
-          provideEffects([CoinEffects]),
+        component: NavigationComponent,
+        canActivate: [environment.mock ? () => of(true) : AuthGuard],
+        data: {
+          authGuardPipe: redirectUnauthorizedToLogin,
+        },
+        children: [
           {
-            provide: CoinResourcesAbstract,
-            useClass: environment.mock ? CoinResourcesMock : CoinResources,
+            path: '',
+            children: [{ path: '', component: CoinListComponent }],
           },
         ],
-        children: [{ path: '', component: CoinListComponent }],
       },
     ],
   },
