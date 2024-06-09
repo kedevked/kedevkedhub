@@ -1,0 +1,12 @@
+{
+    "name": "kedevkedhub",
+    "$schema": "node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "targets": {
+      "load-firestore-local": {
+        "executor": "@kedevkedhub/plugins:load-firestore-local",
+        "options": {}
+      }
+    }
+  }
+  

@@ -2,12 +2,12 @@ export const environment = {
   firebase: {
     apiKey: 'xxxxx',
     authDomain: 'xxxxx',
-    projectId: 'xxxxx',
+    projectId: 'fakeproject',
     storageBucket: 'xxxxx',
     messagingSenderId: 'xxxxx',
     appId: 'xxxxx',
     measurementId: 'xxxxx',
   },
   mock: false,
-  firestoreLocal: false,
+  firestoreLocal: true,
 };

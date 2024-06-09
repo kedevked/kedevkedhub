@@ -61,6 +61,22 @@
               "with": "apps/krypto-space/src/environments/environment.development.ts"
             }
           ]
+        },
+        "mock": {
+          "fileReplacements": [
+            {
+              "replace": "apps/krypto-space/src/environments/environment.ts",
+              "with": "apps/krypto-space/src/environments/environment.mock.ts"
+            }
+          ]
+        },
+        "firestore-local": {
+          "fileReplacements": [
+            {
+              "replace": "apps/krypto-space/src/environments/environment.ts",
+              "with": "apps/krypto-space/src/environments/environment.local-firestore.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -73,6 +89,12 @@
         },
         "development": {
           "buildTarget": "krypto-space:build:development"
+        },
+        "mock": {
+          "buildTarget": "krypto-space:build:development,mock"
+        },
+        "firestore-local": {
+          "buildTarget": "krypto-space:build:development,firestore-local"
         }
       },
       "defaultConfiguration": "development"

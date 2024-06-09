@@ -1,0 +1,80 @@
+{
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true
+    }
+  },
+  "functions": [
+    {
+      "codebase": "cf-admin",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-admin"
+    },
+    {
+      "codebase": "cf-assign-coach",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-assign-coach"
+    },
+    {
+      "codebase": "cf-backup",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-backup"
+    },
+    {
+      "codebase": "cf-coach-intro",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-coach-intro"
+    },
+    {
+      "codebase": "cf-expire-survey",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-expire-survey"
+    },
+    {
+      "codebase": "cf-firestore-sync",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-firestore-sync"
+    },
+    {
+      "codebase": "cf-nps",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-nps"
+    },
+    {
+      "codebase": "cf-push-notification",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-push-notification"
+    },
+    {
+      "codebase": "cf-send-sms",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-send-sms"
+    },
+    {
+      "codebase": "cf-survey-notification",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-survey-notification"
+    },
+    {
+      "codebase": "cf-unsubscribe",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-unsubscribe"
+    },
+    {
+      "codebase": "cf-user",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-user"
+    },
+    {
+      "codebase": "cf-zendesk",
+      "runtime": "nodejs18",
+      "source": "dist/apps/cf-zendesk"
+    }
+  ]
+}

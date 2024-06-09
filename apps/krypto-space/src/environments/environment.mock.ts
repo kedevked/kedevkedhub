@@ -8,6 +8,5 @@ export const environment = {
     appId: 'xxxxx',
     measurementId: 'xxxxx',
   },
-  mock: false,
-  firestoreLocal: false,
+  mock: true
 };

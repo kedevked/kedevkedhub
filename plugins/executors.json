@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "load-firestore-local": {
+      "implementation": "./src/executors/load-firestore-local/executor",
+      "schema": "./src/executors/load-firestore-local/schema.json",
+      "description": "load-firestore-local executor"
+    }
+  }
+}

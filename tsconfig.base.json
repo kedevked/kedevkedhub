@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kedevkedhub/firestore/local": ["firestore/local/src/index.ts"],
       "@kedevkedhub/firestore/models": ["firestore/models/src/index.ts"],
       "@kedevkedhub/firestore/schemas": ["firestore/schemas/src/index.ts"],
       "@kedevkedhub/firestore/validators-library": [
