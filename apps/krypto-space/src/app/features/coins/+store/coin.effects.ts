@@ -4,21 +4,19 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Auth } from '@angular/fire/auth';
 import { concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Router } from 'express';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { UserQueries } from '../../../queries/users.queries';
 import { catchSwitchMapError } from '../../../shared/rxjs-operators';
 import { CoinActions } from './coin.actions';
 import { selectAll } from './coin.reducer';
 import { CoinResourcesAbstract } from './coin.resources';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CoinEffects {
-  userQueries = inject(UserQueries);
-  store = inject(Store);
-  auth = inject(Auth);
-  router = inject(Router);
-  coinResources = inject(CoinResourcesAbstract);
+  private readonly store = inject(Store);
+  private readonly router = inject(Router);
+  private readonly coinResources = inject(CoinResourcesAbstract);
   loadCoins$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CoinActions.loadCoins),

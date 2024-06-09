@@ -1,6 +1,6 @@
 import { Timestamp } from '@angular/fire/firestore';
 import { CoinEntity, UserEntity } from "../entities/user-entity";
-import { User } from '@kedevkedhub/firestore/models';
+import { Coin, User } from '@kedevkedhub/firestore/models';
 
 export function toUserEntity(data: User): UserEntity {
   return {
